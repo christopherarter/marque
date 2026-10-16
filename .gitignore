@@ -2,6 +2,7 @@
 /node_modules/
 .phpunit.result.cache
 .phpunit.cache/
+.phpstan.cache/
 composer.lock
 .env
 .idea/
@@ -11,7 +12,6 @@ composer.lock
 .DS_Store
 .chief/
 .claude/
-CLAUDE.md
 /backlog
 /docs/superpowers
 .worktrees/

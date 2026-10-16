@@ -14,18 +14,21 @@
     ],
     "require": {
         "php": "^8.4",
-        "illuminate/contracts": "^12.0|^13.0",
-        "illuminate/database": "^12.0|^13.0",
-        "illuminate/support": "^12.0|^13.0"
+        "illuminate/cache": "^12.0 || ^13.0",
+        "illuminate/console": "^12.0 || ^13.0",
+        "illuminate/contracts": "^12.0 || ^13.0",
+        "illuminate/database": "^12.0 || ^13.0",
+        "illuminate/http": "^12.0 || ^13.0",
+        "illuminate/routing": "^12.0 || ^13.0",
+        "illuminate/support": "^12.0 || ^13.0"
     },
     "require-dev": {
-        "larastan/larastan": "^3.0",
-        "laravel/pint": "^1.27",
-        "laravel/sanctum": "^4.3",
-        "orchestra/testbench": "^10.0|^11.0",
-        "pestphp/pest": "^4.0",
-        "pestphp/pest-plugin-laravel": "^4.0",
-        "pestphp/pest-plugin-mutate": "^4.0"
+        "larastan/larastan": "^3.13",
+        "laravel/pint": "^1.32.1",
+        "laravel/sanctum": "^4.3.3",
+        "orchestra/testbench": "^10.12 || ^11.3",
+        "pestphp/pest": "^4.7.8 || ^5.3.2",
+        "pestphp/pest-plugin-laravel": "^4.1 || ^5.0.1"
     },
     "autoload": {
         "psr-4": {
@@ -47,23 +50,31 @@
     "config": {
         "sort-packages": true,
         "allow-plugins": {
-            "dealerdirect/phpcodesniffer-composer-installer": true,
             "pestphp/pest-plugin": true
         }
     },
     "scripts": {
-        "test": "vendor/bin/pest",
-        "test:pgsql": "DB_CONNECTION=pgsql vendor/bin/pest",
-        "test:mysql": "DB_CONNECTION=mysql vendor/bin/pest",
+        "check": [
+            "@composer validate --strict",
+            "@lint",
+            "@analyse",
+            "@test"
+        ],
+        "lint": "vendor/bin/pint --test",
+        "format": "vendor/bin/pint",
+        "analyse": "vendor/bin/phpstan analyse",
+        "test": "vendor/bin/pest --exclude-group=benchmark",
+        "test:arch": "vendor/bin/pest --testsuite=Architecture",
+        "test:benchmark": "vendor/bin/pest --testsuite=Benchmark",
+        "test:pgsql": "DB_CONNECTION=pgsql vendor/bin/pest --exclude-group=benchmark",
+        "test:mysql": "DB_CONNECTION=mysql vendor/bin/pest --exclude-group=benchmark",
         "test:all": [
             "@test",
-            "@test:pgsql",
-            "@test:mysql"
+            "@test:pgsql"
         ],
-        "test:coverage": "vendor/bin/pest --coverage",
-        "test:services": "docker compose -f docker-compose.test.yml up -d --wait",
-        "test:down": "docker compose -f docker-compose.test.yml down -v"
+        "test:coverage": "@test --coverage --min=90",
+        "test:services": "docker compose up -d --wait",
+        "test:down": "docker compose down --volumes"
     },
-    "minimum-stability": "dev",
     "prefer-stable": true
 }

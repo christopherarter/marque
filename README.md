@@ -162,3 +162,7 @@ SQLite works out of the box for development. PostgreSQL and Valkey are optional 
 **Testing** &mdash; [Testing authorization](docs/testing/testing-authorization.md)
 
 **Reference** &mdash; [Configuration](docs/reference/configuration.md) | [Contracts](docs/reference/contracts.md) | [Facade](docs/reference/facade.md) | [Events](docs/reference/events.md) | [Artisan commands](docs/cli/artisan-commands.md) | [Comparison with Spatie](docs/comparison-with-spatie.md)
+
+## Contributing
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for local setup, quality checks, database tests, and dependency updates.

@@ -148,9 +148,11 @@ it('allows staff to update any post regardless of ownership', function (): void 
 });
 
 it('denies an author from posts.update when no resource is supplied', function (): void {
-    // The resource policy only resolves when a resource is present in the request.
-    // Without a resource, the author has no unconditional grant from their role,
-    // so the evaluator falls through to default-deny.
+    /*
+     * The resource policy only resolves when a resource is present in the request.
+     * Without a resource, the author has no unconditional grant from their role,
+     * so the evaluator falls through to default-deny.
+     */
     expect($this->author->canDo('posts.update'))->toBeFalse();
 });
 

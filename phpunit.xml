@@ -4,10 +4,14 @@
     xsi:noNamespaceSchemaLocation="vendor/phpunit/phpunit/phpunit.xsd"
     bootstrap="vendor/autoload.php"
     colors="true"
-    testdox="true"
+    failOnRisky="true"
+    failOnWarning="true"
     cacheDirectory=".phpunit.cache"
 >
     <testsuites>
+        <testsuite name="Architecture">
+            <directory>tests/Arch</directory>
+        </testsuite>
         <testsuite name="Feature">
             <directory>tests/Feature</directory>
         </testsuite>
