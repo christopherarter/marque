@@ -7,5 +7,7 @@ parameters:
 
     level: 9
 
+    tmpDir: .phpstan.cache
+
     ignoreErrors:
         - identifier: trait.unused
